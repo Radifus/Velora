@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora - Asosiy sahifa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: '#4f46e5', 'primary-hover': '#4338ca' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { transition: background-color 0.3s, color 0.3s; }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 font-sans min-h-screen">
+
+    <button id="darkModeToggle" class="fixed top-6 right-6 z-50 p-2.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors border border-transparent dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
+        <i class="ph ph-moon text-xl dark:hidden"></i>
+        <i class="ph ph-sun text-xl hidden dark:block"></i>
+    </button>
+
+    <main>
+        <section class="relative overflow-hidden">
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-[120px] opacity-40"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-[120px] opacity-40"></div>
+
+            <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-8">
+                <header class="flex items-center justify-between mb-16">
+                    <a href="index.html" class="flex items-center gap-3 text-primary">
+                        <img src="logo.svg" alt="Velora logo" class="w-12 h-12 rounded-2xl shadow-lg shadow-primary/20">
+                        <span class="text-2xl font-bold tracking-tight dark:text-white">Velora</span>
+                    </a>
+                    <nav class="hidden sm:flex items-center gap-3">
+                        <a href="{% url 'login' %}" class="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary transition-colors">Kirish</a>
+                        <a href="{% url 'register' %}" class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-medium transition-colors shadow-lg shadow-primary/30">Ro'yxatdan o'tish</a>
+                    </nav>
+                </header>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[75vh]">
+                    <div>
+                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+                            <i class="ph-fill ph-sparkle"></i>
+                            Zamonaviy raqamli savdo platformasi
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-6">
+                            Xaridni yanada qulay, tez va ishonchli qiling
+                        </h1>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-xl">
+                            Velora orqali trend mahsulotlarni toping, buyurtma bering va qulay yetkazib berish xizmatidan foydalaning. Barcha kerakli imkoniyatlar bitta joyda jamlangan.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                            <a href="{% url 'register' %}" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-primary hover:bg-primary-hover text-white font-semibold transition-all shadow-lg shadow-primary/30">
+                                Boshlash
+                                <i class="ph ph-arrow-right"></i>
+                            </a>
+                            <a href="{% url 'login' %}" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-primary hover:text-primary transition-colors">
+                                Hisobga kirish
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-5 rounded-3xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                                <div class="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                                    <i class="ph ph-truck text-xl"></i>
+                                </div>
+                                <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Tez yetkazib berish</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Buyurtmalarni qisqa muddatda qabul qiling.</p>
+                            </div>
+                            <div class="p-5 rounded-3xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                                <div class="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                                    <i class="ph ph-shield-check text-xl"></i>
+                                </div>
+                                <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Xavfsiz to'lov</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Himoyalangan va ishonchli to'lov tizimi.</p>
+                            </div>
+                            <div class="p-5 rounded-3xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                                <div class="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                                    <i class="ph ph-headset text-xl"></i>
+                                </div>
+                                <h3 class="font-semibold mb-1 text-gray-900 dark:text-white">Doimiy yordam</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Siz uchun tayyor qo'llab-quvvatlash xizmati.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 blur-3xl rounded-full"></div>
+                        <div class="relative rounded-[2rem] p-6 sm:p-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-900 text-white shadow-2xl overflow-hidden border border-white/10">
+                            <div class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-8">
+                                    <div>
+                                        <p class="text-indigo-100 text-sm">Platforma imkoniyatlari</p>
+                                        <h2 class="text-3xl font-bold mt-1">Velora tajribasi</h2>
+                                    </div>
+                                    <div class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center">
+                                        <i class="ph-fill ph-storefront text-2xl"></i>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="p-5 rounded-3xl bg-white/10 backdrop-blur border border-white/10">
+                                        <div class="flex items-start gap-4">
+                                            <div class="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
+                                                <i class="ph ph-device-mobile-camera text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-lg mb-1">Moslashuvchan interfeys</h3>
+                                                <p class="text-indigo-100 text-sm leading-relaxed">Mobil va desktop qurilmalarda bir xil darajada qulay foydalanish tajribasi.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-5 rounded-3xl bg-white/10 backdrop-blur border border-white/10">
+                                        <div class="flex items-start gap-4">
+                                            <div class="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
+                                                <i class="ph ph-cards text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-lg mb-1">Sodda boshqaruv</h3>
+                                                <p class="text-indigo-100 text-sm leading-relaxed">Asosiy sahifadan ro'yxatdan o'tish va tizimga kirish bo'limlariga tez o'tish mumkin.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-5 rounded-3xl bg-white/10 backdrop-blur border border-white/10">
+                                        <div class="flex items-start gap-4">
+                                            <div class="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
+                                                <i class="ph ph-gear-six text-xl"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-lg mb-1">Backendga tayyor</h3>
+                                                <p class="text-indigo-100 text-sm leading-relaxed">Frontend tuzilma saqlangan, formalar esa keyinchalik backend bilan ulash uchun soddalashtirilgan.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const applyDarkMode = () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        };
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        applyDarkMode();
+    </script>
+</body>
+</html>

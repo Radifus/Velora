@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parolni unutdingizmi - Velora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: '#4f46e5', 'primary-hover': '#4338ca' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { transition: background-color 0.3s, color 0.3s; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 font-sans min-h-screen flex items-center justify-center p-4 relative">
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="absolute top-6 right-6 p-2.5 text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 rounded-full transition-colors shadow-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+        <i class="ph ph-moon text-xl dark:hidden"></i>
+        <i class="ph ph-sun text-xl hidden dark:block"></i>
+    </button>
+
+    <div class="w-full max-w-md bg-white dark:bg-gray-900 p-8 sm:p-10 rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-2xl shadow-gray-200/50 dark:shadow-none">
+
+        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <i class="ph-fill ph-key text-3xl text-primary"></i>
+        </div>
+
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Parolni tiklash</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Pochtangizni kiriting, biz parolni tiklash uchun maxsus kod yuboramiz.</p>
+        </div>
+
+        <form action="{% url 'forgot_password' %}" method="post" class="space-y-6">
+            {% csrf_token %}
+            <!-- Email -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email manzil</label>
+                <div class="relative">
+                    <i class="ph ph-envelope-simple absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                    <input name="email" type="email" required placeholder="nom@misol.uz" class="w-full bg-gray-50 dark:bg-gray-950 dark:text-white border border-gray-200 dark:border-gray-800 rounded-xl pl-11 pr-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-400">
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white rounded-xl py-3.5 font-semibold transition-all shadow-lg shadow-primary/30 active:scale-[0.98]">
+                Kodni yuborish
+            </button>
+        </form>
+
+        <div class="mt-8 text-sm">
+            <a href="login.html" class="inline-flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+                <i class="ph ph-arrow-left text-lg"></i> Ortga qaytish
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const applyDarkMode = () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        };
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+        applyDarkMode();
+    </script>
+</body>
+</html>

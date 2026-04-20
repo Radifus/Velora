@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tizimga kirish - Velora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: '#4f46e5', 'primary-hover': '#4338ca' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { transition: background-color 0.3s, color 0.3s; }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 font-sans min-h-screen">
+
+    <div class="flex min-h-screen">
+        <!-- Left Pane (Branding - hidden on mobile) -->
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-900 items-center justify-center p-12 relative overflow-hidden">
+            <!-- Decorative shapes -->
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[100px] opacity-60"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-indigo-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-60"></div>
+
+            <div class="z-10 text-white text-center max-w-md backdrop-blur-md bg-white/10 p-10 rounded-3xl border border-white/20 shadow-2xl">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 mb-6">
+                    <i class="ph-fill ph-crown-simple text-3xl"></i>
+                </div>
+                <h2 class="text-4xl font-bold mb-4 tracking-tight">Velora</h2>
+                <p class="text-indigo-100 text-lg leading-relaxed">Eng so'nggi trendlar, qulay xarid va ishonchli yetkazib berish xizmati endi bitta joyda.</p>
+            </div>
+        </div>
+
+        <!-- Right Pane (Form) -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 relative">
+
+            <!-- Dark Mode Toggle -->
+            <button id="darkModeToggle" class="absolute top-6 right-6 p-2.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors border border-transparent dark:border-gray-800">
+                <i class="ph ph-moon text-xl dark:hidden"></i>
+                <i class="ph ph-sun text-xl hidden dark:block"></i>
+            </button>
+
+            <div class="w-full max-w-md">
+                <!-- Mobile Logo -->
+                <div class="flex items-center gap-2 mb-10 lg:hidden text-primary">
+                    <img src="logo.svg" alt="Velora logo" class="w-10 h-10 rounded-2xl">
+                    <span class="text-2xl font-bold dark:text-white tracking-tight">Velora</span>
+                </div>
+
+                <div class="mb-8 lg:mb-10">
+                    <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Xush kelibsiz! 👋</h1>
+                    <p class="text-gray-500 dark:text-gray-400">Hisobingizga kirish uchun ma'lumotlarni kiriting.</p>
+                </div>
+
+                <form action="{% url 'login' %}" method="post" class="space-y-5">
+                    {% csrf_token %}
+
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email manzil</label>
+                        <div class="relative">
+                            <i class="ph ph-envelope-simple absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                            <input name="username" type="email" required placeholder="nom@misol.uz" class="w-full bg-white dark:bg-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl pl-11 pr-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-400">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Parol</label>
+                            <a href="{% url 'forgot_password' %}" class="text-sm font-medium text-primary hover:text-primary-hover transition-colors">Parolni unutdingizmi?</a>
+                        </div>
+                        <div class="relative">
+                            <i class="ph ph-lock-key absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                            <input name="password" type="password" id="password" required placeholder="••••••••" class="w-full bg-white dark:bg-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl pl-11 pr-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-400">
+                        </div>
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white rounded-xl py-3.5 font-semibold transition-all shadow-lg shadow-primary/30 active:scale-[0.98] mt-4">
+                        Tizimga kirish
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+                    Hali hisobingiz yo'qmi?
+                    <a href="{% url 'register' %}" class="font-semibold text-primary hover:text-primary-hover transition-colors">Ro'yxatdan o'tish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const applyDarkMode = () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        };
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        applyDarkMode();
+
+    </script>
+</body>
+</html>
