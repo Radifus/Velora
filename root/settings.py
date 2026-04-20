@@ -141,3 +141,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "zayniddinovshaxriyor07@gmail.com"
 EMAIL_HOST_PASSWORD = "vyhf kiff jjtn pvmb"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# nice
